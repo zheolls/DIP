@@ -19,4 +19,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="image\Color\lenna512c.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="image\Color\girl.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

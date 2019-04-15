@@ -1,20 +1,43 @@
-﻿// DIP.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
-//
+﻿#include <iostream>
+#include <DIP/DIP.hpp>
+#pragma comment(lib, "opencv_world410d.lib")
+//该头文件模式下，兼容C和C++
+#include<opencv2/core/core.hpp>
+#include<opencv2/highgui/highgui.hpp>
+#include "opencv2/opencv.hpp"
 
-#include <iostream>
 
+void RGBtoYUV(cv::Mat simg, cv::Mat &oimgy, cv::Mat &oimgu, cv::Mat &oimgv) {
+	using namespace DIP::ColorSpace;
+
+	for (int i = 0; i < simg.rows; i++) {
+		for (int j = 0; j < simg.cols; j++) {
+			cv::Vec3b temp = simg.at<cv::Vec3b>(j, i);
+			cv::Vec3b temp2;
+			YUV y = RGB(temp[0],temp[1],temp[2]);
+			temp2 = cv::Vec3b(y.intY(), y.intU(), y.intV());
+			oimgy.at<cv::Vec3b>(j, i) = cv::Vec3b(temp2[0], temp2[0], temp2[0]);
+			oimgu.at<cv::Vec3b>(j, i) = cv::Vec3b(temp2[1], temp2[1], temp2[1]);
+			oimgv.at<cv::Vec3b>(j, i) = cv::Vec3b(temp2[2], temp2[2], temp2[2]);
+
+		}
+	}
+}
 int main()
 {
-    std::cout << "Hello World!\n"; 
+	cv::Mat src,drcy,drcu,drcv,drc;
+	src = cv::imread("girl.bmp",CV_16FC3);
+	if (!src.data) {
+		std::cout << "dsadd" << std::endl;
+	}
+	drcy = cv::Mat(src.rows, src.cols, src.type());
+	drcu = cv::Mat(src.rows, src.cols, src.type());
+	drcv = cv::Mat(src.rows, src.cols, src.type());
+	std::cout << src.channels() << std::endl;
+	RGBtoYUV(src, drcy, drcu, drcv);
+	cv::imwrite("image/Color/girly.bmp",drcy);
+	cv::imwrite("image/Color/girlu.bmp", drcu);
+	cv::imwrite("image/Color/girlv.bmp", drcv);
+
 }
 
-// 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
-// 调试程序: F5 或调试 >“开始调试”菜单
-
-// 入门提示: 
-//   1. 使用解决方案资源管理器窗口添加/管理文件
-//   2. 使用团队资源管理器窗口连接到源代码管理
-//   3. 使用输出窗口查看生成输出和其他消息
-//   4. 使用错误列表窗口查看错误
-//   5. 转到“项目”>“添加新项”以创建新的代码文件，或转到“项目”>“添加现有项”以将现有代码文件添加到项目
-//   6. 将来，若要再次打开此项目，请转到“文件”>“打开”>“项目”并选择 .sln 文件
