@@ -1,9 +1,6 @@
 ﻿#include <iostream>
 #pragma comment(lib, "opencv_world410d.lib")
 //该头文件模式下，兼容C和C++
-#include<opencv2/core/core.hpp>
-#include<opencv2/highgui/highgui.hpp>
-#include "opencv2/opencv.hpp"
 #include "ColorSpace.hpp"
 #include "Histogram.hpp"
 void RGBtoYUV(cv::Mat simg, cv::Mat &oimgy, cv::Mat &oimgu, cv::Mat &oimgv) {

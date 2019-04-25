@@ -37,9 +37,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DIP\COLORSPACE.HPP">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="ColorSpace.hpp">
       <Filter>头文件</Filter>
     </ClInclude>

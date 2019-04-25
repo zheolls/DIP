@@ -170,7 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorSpace.hpp" />
-    <ClInclude Include="DIP\COLORSPACE.HPP" />
     <ClInclude Include="Histogram.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

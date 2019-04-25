@@ -127,7 +127,20 @@ ColorSpace::YUV::YUV(Scalar y, Scalar u, Scalar v)
 
 ColorSpace::YUV::YUV(RGB c)
 {
+	Scalar r, g, b;
+	Scalar y, u, v;
 
+	r = c.Red;
+	g = c.Green;
+	b = c.Blue;
+
+	y = 0.299 * r + 0.587 * g + 0.114 * b;
+	u = -0.169 * r - 0.331 * g + 0.5 * b;
+	v = 0.5 * r - 0.419 * g - 0.081 * b;
+
+	Y = y;
+	U = u;
+	V = v;
 }
 
 int ColorSpace::YUV::intY()
