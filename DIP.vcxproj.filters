@@ -18,6 +18,12 @@
     <ClCompile Include="DIP.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ColorSpace.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Histogram.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="image\Color\lenna512c.bmp">
@@ -26,5 +32,19 @@
     <Image Include="image\Color\girl.bmp">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="..\..\..\OneDrive\学科\图像处理\直方图 特征示例图\8位\dark.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DIP\COLORSPACE.HPP">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorSpace.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Histogram.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

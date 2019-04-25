@@ -78,7 +78,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>C:\Program Files (x86)\opencv\build\include;C:\Program Files (x86)\Eigen;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Program Files (x86)\opencv\build\include;.\;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files (x86)\opencv\build\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -159,11 +159,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ColorSpace.cpp" />
     <ClCompile Include="DIP.cpp" />
+    <ClCompile Include="Histogram.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\OneDrive\学科\图像处理\直方图 特征示例图\8位\dark.bmp" />
     <Image Include="image\Color\girl.bmp" />
     <Image Include="image\Color\lenna512c.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ColorSpace.hpp" />
+    <ClInclude Include="DIP\COLORSPACE.HPP" />
+    <ClInclude Include="Histogram.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
