@@ -1,4 +1,3 @@
-#pragma once
 #include<string>
 #define M_PI 3.14159
 namespace ColorSpace
@@ -20,8 +19,8 @@ namespace ColorSpace
 		Scalar First() {
 			return Intensity;
 		};
+		int intGrey();
 	};
-
 	struct RGB  {
 		Scalar Red;	// 0 .. 1
 		Scalar Green;	// 0 .. 1
@@ -62,8 +61,10 @@ namespace ColorSpace
 		Scalar Third() {
 			return Intensity;
 		};
+		int intH();
+		int intS();
+		int intI();
 	};
-
 	struct YUV  {
 		Scalar Y; //0...1
 		Scalar U;  //-0.5~0.5
@@ -88,7 +89,6 @@ namespace ColorSpace
 
 		int intV();
 	};
-	
 };
 
 

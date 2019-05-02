@@ -160,16 +160,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ColorSpace.cpp" />
+    <ClCompile Include="ColorSpaceConvert.cpp" />
     <ClCompile Include="DIP.cpp" />
+    <ClCompile Include="Filter.cpp" />
     <ClCompile Include="Histogram.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\OneDrive\学科\图像处理\直方图 特征示例图\8位\dark.bmp" />
+    <Image Include="airplane512.bmp" />
     <Image Include="image\Color\girl.bmp" />
     <Image Include="image\Color\lenna512c.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorSpace.hpp" />
+    <ClInclude Include="ColorSpaceConvert.hpp" />
+    <ClInclude Include="Config.hpp" />
+    <ClInclude Include="Filter.hpp" />
     <ClInclude Include="Histogram.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

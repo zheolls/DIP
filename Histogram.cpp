@@ -2,20 +2,21 @@
 
 void Histogram::generate_histogram(cv::Mat img)
 {
+	for (int i = 0; i < 256; i++) {
+		inth[i] = 0;
+	}
 	for (int i = 0; i < img.cols; i++)
 		for (int j = 0; j < img.rows; j++) {
-			h[int(img.at<uchar>(j, i))]++;
+			inth[int(img.at<uchar>(j, i))]++;
 		}
 
 	for (int i = 0; i < 256; i++) {
-		h[i] = double(h[i]) / (img.rows * img.cols);
+		h[i] = double(inth[i]) / (img.rows * img.cols);
 		if (i == 0)
 			c[i] = h[i];
 		else
 			c[i] = c[i - 1] + h[i];
 	}
-	int a = img.rows;
-	int b = img.cols;
 }
 
 void Histogram::equalization_histogram(cv::Mat img)
@@ -57,6 +58,7 @@ void Histogram::sethistogram(int s[])
 	int sum = 0;
 	for (int i = 0; i < 256; i++) {
 		sum += s[i];
+		inth[i] = s[i];
 	}
 	for (int i = 0; i < 256; i++) {
 		h[i] = double(s[i]) / sum;
@@ -74,9 +76,23 @@ void Histogram::sethistogram(double s[])
 		h[i] = s[i];
 	}
 	c[0] = h[0];
-	for (int i = 0; i < 256; i++) {
+	for (int i = 1; i < 256; i++) {
 		c[i] = c[i - 1] + h[i];
 	}
+}
+
+void Histogram::addpixel(uchar p)
+{
+	inth[p]++;
+	h[p] += 1 / (img.rows * img.cols);
+	c[p] += 1 / (img.rows * img.cols);
+}
+
+void Histogram::subpixel(uchar p)
+{
+	inth[p]--;
+	h[p] -= 1 / (img.rows * img.cols);
+	c[p] += 1 / (img.rows * img.cols);
 }
 
 Histogram::Histogram(cv::Mat img)
@@ -89,6 +105,10 @@ Histogram::Histogram(int s[])
 	sethistogram(s);
 }
 
+Histogram::Histogram()
+{
+}
+
 cv::Mat Histogram::drawhistogram()
 {
 	using namespace cv;
@@ -97,15 +117,15 @@ cv::Mat Histogram::drawhistogram()
 	int histSize = 255;
 	int bin_w = cvRound((double)hist_w / histSize);
 	Mat histImage(hist_w, hist_h, CV_8UC3, Scalar(255,255,255));
-	int his[255];
+	int his[256];
 	double max = 0;
-	for (int i = 0; i < 255; i++) {
+	for (int i = 0; i < 256; i++) {
 		if (max < h2[i]) max = h2[i];
 	}
-	for (int i = 0; i < 255; i++) {
+	for (int i = 0; i < 256; i++) {
 		his[i] = hist_h * h2[i]/max;
 	}
-	for (int i = 0; i < histSize; i++)
+	for (int i = 1; i < histSize; i++)
 	{
 		line(histImage, Point(bin_w * (i), hist_h),	Point(bin_w * (i), hist_h - his[i - 1]),
 			Scalar(0, 0, 255), 2, 8, 0);

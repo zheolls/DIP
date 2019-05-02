@@ -20,6 +20,11 @@ ColorSpace::Grayscale::Grayscale(YUV c)
 	Intensity = c.Y;
 }
 
+int ColorSpace::Grayscale::intGrey()
+{
+	return int(255*Intensity);
+}
+
 ColorSpace::HSI::HSI(Scalar h, Scalar s, Scalar i)
 {
 	Hue = h;
@@ -66,6 +71,21 @@ ColorSpace::HSI::HSI(RGB c)
 	Hue = h;
 	Saturation = s;
 	Intensity = i;
+}
+
+int ColorSpace::HSI::intH()
+{
+	return int(Hue * 255 / M_PI);
+}
+
+int ColorSpace::HSI::intS()
+{
+	return int(Saturation*255);
+}
+
+int ColorSpace::HSI::intI()
+{
+	return int(Intensity * 255);;
 }
 
 ColorSpace::RGB::RGB(Scalar r, Scalar g, Scalar b)
